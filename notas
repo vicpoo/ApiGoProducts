@@ -1,0 +1,22 @@
+create database Go;
+use Go;
+
+create table producto(
+ id Int auto_increment primary key,
+ nombre varchar(255)not null,
+ precio Decimal(10,2) not null,
+ cantidad int not null
+);
+
+query que use en workbench
+cambie el nombre de la BD
+
+
+en el archivo MySql.Go
+// Cambia estos valores según tu configuración
+	username := "root"
+	password := "1234"
+	hostname := "127.0.0.1:3306"
+	dbname := "Go"
+
+    
