@@ -11,26 +11,21 @@ import (
 )
 
 func main() {
-	// Conectar a la base de datos
 	db, err := infrastructure.ConnectDB()
 	if err != nil {
 		panic("Error al conectar a la base de datos: " + err.Error())
 	}
 	defer db.Close()
 
-	// Inicializar repositorio
 	repo := infrastructure.NewProductRepository(db)
 
-	// Inicializar Gin
 	r := gin.Default()
 
-	// Crear casos de uso
 	createProduct := application.CreateProductUseCase{Repo: repo}
 	viewAllProducts := application.ViewAllProductsUseCase{Repo: repo}
 	updateProduct := application.UpdateProductUseCase{Repo: repo}
 	deleteProduct := application.DeleteProductUseCase{Repo: repo}
 
-	// Rutas de la API
 	r.POST("/products", func(c *gin.Context) {
 		var product domain.Product
 		if err := c.ShouldBindJSON(&product); err != nil {
@@ -85,6 +80,5 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "Producto eliminado con éxito"})
 	})
 
-	// Correr el servidor en el puerto 8080
-	r.Run(":8000") // Cambia el puerto si es necesario
+	r.Run(":8000")
 }

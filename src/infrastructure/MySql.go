@@ -8,7 +8,6 @@ import (
 )
 
 func ConnectDB() (*sql.DB, error) {
-	// Cambia estos valores según tu configuración
 	username := "root"
 	password := "1234"
 	hostname := "127.0.0.1:3306"
@@ -20,7 +19,6 @@ func ConnectDB() (*sql.DB, error) {
 		return nil, err
 	}
 
-	// Verifica la conexión
 	if err = db.Ping(); err != nil {
 		return nil, err
 	}
